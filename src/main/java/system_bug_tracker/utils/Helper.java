@@ -28,4 +28,12 @@ public class Helper {
     });
 	  terminal.writer().flush();
   }
+
+  public Long convertId(String id) {
+    if (id.startsWith("I-")) {
+      return Long.valueOf(id.substring(2));
+    } else {
+      return Long.valueOf(id);
+    }
+  }
 }

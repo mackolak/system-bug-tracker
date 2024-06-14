@@ -25,15 +25,16 @@ public class SystemBugTrackerFacade {
     return issue.getId();
   }
 
-  public String closeBug(Long id) {
-    Optional<Issue> optionalIssue = repository.findById(id);
+  public String closeBug(String id) {
+    Long convertedId = helper.convertId(id);
+    Optional<Issue> optionalIssue = repository.findById(convertedId);
     if (optionalIssue.isPresent()) {
       Issue issue = optionalIssue.get();
       issue.setStatus(IssueStatus.CLOSED);
       repository.save(issue);
-      return "Issue with id: " + id + " has been closed.";
+      return "Issue with id: " + convertedId + " has been closed.";
     } else {
-      return "Issue with id: " + id + " was not found.";
+      return "Issue with id: " + convertedId + " was not found.";
     }
   }
 

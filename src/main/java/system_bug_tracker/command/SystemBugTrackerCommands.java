@@ -23,7 +23,7 @@ public class SystemBugTrackerCommands {
   }
 
   @ShellMethod(value = "Close existing issue.", key = "close")
-  public String closeBug(@ShellOption(value = "id") Long id) {
+  public String closeBug(@ShellOption(value = "id") String id) {
     return facade.closeBug(id);
   }
 
