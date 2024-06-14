@@ -18,12 +18,15 @@ public class Helper {
 
   public void printIssuesTable(List<Issue> issues) {
     String leftAlignFormat = "| %-8s | %-52s | %-8s | %-6s | %-19s | %-11s |%n";
-    terminal.writer().println("| ID       | Description                                          | ParentId | Status | CreationTimestamp   | Link        |");
-    terminal.writer().println("|----------|------------------------------------------------------|----------|--------|---------------------|-------------|");
+    terminal.writer().println("| ID       | Description                                          |"
+    + "ParentId  | Status | CreationTimestamp   | Link        |");
+    terminal.writer().println("|----------|------------------------------------------------------|"
+    + "----------|--------|---------------------|-------------|");
     issues.forEach((issue) -> {
       terminal.writer().format(leftAlignFormat, issue.getId(), 
                               issue.getDescription(), issue.getParentId(),
-                              issue.getStatus(), issue.getCreationTimestamp().truncatedTo(ChronoUnit.SECONDS).toString(), 
+                              issue.getStatus(), 
+                              issue.getCreationTimestamp().truncatedTo(ChronoUnit.SECONDS).toString(), 
                               issue.getLogLink());
     });
 	  terminal.writer().flush();
