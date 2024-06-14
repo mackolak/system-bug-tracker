@@ -8,13 +8,16 @@ import org.springframework.stereotype.Component;
 import system_bug_tracker.model.Issue;
 import system_bug_tracker.model.IssueStatus;
 import system_bug_tracker.repository.SystemBugTrackerRepository;
+import system_bug_tracker.utils.Helper;
 
 @Component
 public class SystemBugTrackerFacade {
   private SystemBugTrackerRepository repository;
+  private Helper helper;
   
-  public SystemBugTrackerFacade(SystemBugTrackerRepository repository) {
+  public SystemBugTrackerFacade(SystemBugTrackerRepository repository, Helper helper) {
     this.repository = repository;
+    this.helper = helper;
   }
 
   public String createBug(String parentId, String description, String logLink) {
@@ -34,12 +37,8 @@ public class SystemBugTrackerFacade {
     }
   }
 
-  public String listBugs() {
+  public void listBugs() {
     List<Issue> issues = repository.findAll();
-    if (!issues.isEmpty()) {
-      return issues.toString();
-    } else {
-      return "No issues found";
-    }
+    helper.printIssuesTable(issues);
   }
 }

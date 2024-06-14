@@ -28,8 +28,7 @@ public class SystemBugTrackerCommands {
   }
 
   @ShellMethod(value = "List all existing issues.", key = "list")
-  public String listBugs() {
-    return facade.listBugs();
+  public void listBugs() {
+    facade.listBugs();
   }
-
 }
