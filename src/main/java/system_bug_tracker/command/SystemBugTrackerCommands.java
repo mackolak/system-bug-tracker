@@ -4,6 +4,7 @@ import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellOption;
 
+import jakarta.validation.constraints.Size;
 import system_bug_tracker.facade.SystemBugTrackerFacade;
 
 @ShellComponent
@@ -15,15 +16,15 @@ public class SystemBugTrackerCommands {
   }
 
   @ShellMethod(value = "Create new issue.", key = "create")
-  public String createBug(@ShellOption(value = "parent-id") String parentId, 
-                          @ShellOption(value = "desc") String description,
-                          @ShellOption(value = "log-link") String logLink
+  public String createBug(@Size(min = 0, max = 10)@ShellOption(value = "parent-id") String parentId, 
+                          @Size(min = 0, max = 100)@ShellOption(value = "desc") String description,
+                          @Size(min = 0, max = 10)@ShellOption(value = "log-link") String logLink
                           ) {                    
     return facade.createBug(parentId, description, logLink);
   }
 
   @ShellMethod(value = "Close existing issue.", key = "close")
-  public String closeBug(@ShellOption(value = "id") String id) {
+  public String closeBug(@Size(min = 0, max = 10)@ShellOption(value = "id") String id) {
     return facade.closeBug(id);
   }
 
