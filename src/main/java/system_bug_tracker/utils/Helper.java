@@ -39,4 +39,8 @@ public class Helper {
       return Long.valueOf(id);
     }
   }
+
+  public void printMessageToTerminal(String message) {
+    terminal.writer().println(message);
+  }
 }
